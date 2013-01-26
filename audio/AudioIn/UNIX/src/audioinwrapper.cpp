@@ -101,11 +101,11 @@ int AudioOpen(void)
                             sampleRate,
                             AUDIO_FORMAT_PCM_16_BIT,
                             (numChannels > 1) ? AUDIO_CHANNEL_IN_STEREO : AUDIO_CHANNEL_IN_MONO,
-                            8*1024,
-                            (android::AudioRecord::record_flags)0,
-                            cbf,
-                            0,
-                            0);
+                            8*1024, /* frameCount */
+                            NULL,   /* callback */
+                            NULL,   /* callback userdata */
+                            0,      /* notificationFrames */
+                            0);     /* sessionId, not supported yet */
   
   if (!record) return -1;
   
